@@ -6,6 +6,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webwordmarson.curso.entities.pk.OrdemItemPK;
 
 
@@ -19,7 +20,7 @@ public class OrdemItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private OrdemItemPK id;
+	private OrdemItemPK id = new OrdemItemPK();
 	private Integer quantity;
 	private Double price;
 	
@@ -35,6 +36,7 @@ public class OrdemItem implements Serializable {
 		this.price = price;
 	}
 	
+	@JsonIgnore
 	public Order getOrder() {
 		
 		return id.getOrder();
@@ -53,7 +55,7 @@ public class OrdemItem implements Serializable {
 		
 	}
 	
-	public void  setProduct(Product product) {
+	public void setProduct(Product product) {
 		
 		id.setProduct(product);
 		
